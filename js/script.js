@@ -6,7 +6,6 @@ $(document).ready(function() {
     month: meseIniziale
   });
 
-
   function giorniFestivi(mese) {
     $.ajax(
       {
@@ -17,7 +16,6 @@ $(document).ready(function() {
         month : mese.month()
       },
       'success': function(data) {
-        console.log(data);
         for (var i = 0; i < data.response.length; i++) {
           $('li').each(function() {
             if (data.response[i].date == $(this).attr('data-complete-date')) {
@@ -35,7 +33,7 @@ $(document).ready(function() {
 
   calcMesi(mese);
   giorniFestivi(mese);
-
+// click avanti
   $('.next').click(function() {
     var thisMonth = $('.mese').attr('data-this-month');
     var date = moment(thisMonth).add(1, 'months');
@@ -43,8 +41,9 @@ $(document).ready(function() {
     calcMesi(date);
     giorniFestivi(date);
 
-  });
 
+  });
+  // click indietro
   $('.prev').click(function() {
     var thisMonth = $('.mese').attr('data-this-month');
     var date = moment(thisMonth).subtract(1, 'months');
@@ -53,6 +52,7 @@ $(document).ready(function() {
     giorniFestivi(date);
 
   });
+
 });
 
 // funzioni
@@ -62,7 +62,7 @@ function calcMesi(mese) {
   $('.mese').attr('data-this-month',mese.format('YYYY-MM'));
   $('.days').html('');
   var daysMonth = mese.daysInMonth();
-  console.log(daysMonth);
+
   for (var i = 1; i <= daysMonth; i++) {
     var source = $('#entry-template').html();
     var template = Handlebars.compile(source);
@@ -75,7 +75,7 @@ function calcMesi(mese) {
     $('.days').append(html);
   }
 }
-
+// add 0
 function addZero(num) {
   if (num < 10) {
     return '0'+ num
@@ -83,5 +83,3 @@ function addZero(num) {
     return num
   }
 }
-
-$
