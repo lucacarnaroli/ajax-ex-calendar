@@ -6,8 +6,6 @@ $(document).ready(function() {
     month: meseIniziale
   });
 
-  calcMesi(mese);
-  giorniFestivi(mese);
 
   function giorniFestivi(mese) {
     $.ajax(
@@ -34,6 +32,27 @@ $(document).ready(function() {
       }
     });
   }
+
+  calcMesi(mese);
+  giorniFestivi(mese);
+
+  $('.next').click(function() {
+    var thisMonth = $('.mese').attr('data-this-month');
+    var date = moment(thisMonth).add(1, 'months');
+
+    calcMesi(date);
+    giorniFestivi(date);
+
+  });
+
+  $('.prev').click(function() {
+    var thisMonth = $('.mese').attr('data-this-month');
+    var date = moment(thisMonth).subtract(1, 'months');
+
+    calcMesi(date);
+    giorniFestivi(date);
+
+  });
 });
 
 // funzioni
@@ -65,20 +84,4 @@ function addZero(num) {
   }
 }
 
-$('.next').click(function() {
-  var thisMonth = $('.mese').attr('data-this-month');
-  var date = moment(thisMonth).add(1, 'months');
-
-  calcMesi(date);
-  giorniFestivi(date);
-
-});
-
-$('.prev').click(function() {
-  var thisMonth = $('.mese').attr('data-this-month');
-  var date = moment(thisMonth).subtract(1, 'months');
-
-  calcMesi(date);
-  giorniFestivi(date);
-
-});
+$
