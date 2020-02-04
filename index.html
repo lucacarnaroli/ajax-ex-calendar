@@ -10,23 +10,24 @@
   </head>
   <body>
 
-    <h2 class="mese">Gennaio</h2>
+    <h2 class="mese" data-this-month=''></h2>
 
     <ul class="days">
 
     </ul>
 
-    <button type="button" name="button">precedente</button>
-    <button type="button" name="button">successivo</button>
+    <button class="prev" type="button" name="button">precedente</button>
+    <button class="next" type="button" name="button">successivo</button>
 
 
 
 
     <script id="entry-template" type="text/x-handlebars-template">
 
-      <li data={{attr}}>
+      <li data-complete-date={{complete-date}}>
         <span>{{data}}</span>
         <span>{{mese}}</span>
+        <span class="festivita"></span>
       </li>
 
     </script>
